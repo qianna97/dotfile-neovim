@@ -16,32 +16,50 @@ set nocompatible
 set scrolloff=10
 
 filetype plugin on
+filetype plugin indent on
 
 call plug#begin('~/.nvim/plugged')
 
+" bracket and pairing
 Plug 'tpope/vim-surround'
 Plug 'chun-yang/auto-pairs'
+
+" status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdcommenter'
+
+" file and word search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+
+" indent
 Plug 'yggdroot/indentline'
 Plug 'airblade/vim-rooter'
+
+" icon
 Plug 'kyazdani42/nvim-web-devicons'
+
+" theme
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+
+" python indent
 Plug 'vim-scripts/indentpython.vim'
+
+" python
 Plug 'nvie/vim-flake8'
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
+
+" c++
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-jp/vim-cpp'
-Plug 'zchee/deoplete-clang'
+
+" rust
+Plug 'rust-lang/rust.vim'
+
+" completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -61,6 +79,9 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_posix_standard = 1
 
+let g:syntastic_rust_checkers = ['cargo']
+
+let g:rooter_patterns = ['=src']
 
 colorscheme dracula
 
@@ -93,8 +114,4 @@ nnoremap <S-Tab> <<
 " for insert mode
 inoremap <S-Tab> <C-d>
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete=1
 let g:formatter_yapf_style = 'pep8'
-let g:jedi#completions_enabled = 0
-let g:jedi#use_splits_not_buffers = "right"
